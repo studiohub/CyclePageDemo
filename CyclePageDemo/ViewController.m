@@ -18,7 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    GYCyclePageView *cyclyPageView = [[GYCyclePageView alloc] initWithFrame:CGRectMake(10, 30, 300, 130)];
+//    GYCyclePageView *cyclyPageView = [[GYCyclePageView alloc] initWithFrame:CGRectMake(10, 30, 300, 130)];
+    GYCyclePageView *cyclyPageView = [GYCyclePageView cyclePageView];
+    cyclyPageView.frame = CGRectMake(10, 30, 300, 130);
     [self.view addSubview:cyclyPageView];
     
     cyclyPageView.pictures = @[ @"img_00", @"img_01"/*, @"img_02", @"img_03", @"img_04",*/ ];

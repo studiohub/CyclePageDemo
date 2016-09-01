@@ -32,6 +32,12 @@
 
 @implementation GYCyclePageView
 
+
++ (instancetype)cyclePageView
+{
+    return [[self alloc] init];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame])

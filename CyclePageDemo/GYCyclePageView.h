@@ -34,6 +34,9 @@
 /** 控件代理对象,主要负责响应点击图片操作*/
 @property (nonatomic, weak) id<GYCyclePageViewDelegate> delegate;
 
+// 便捷方法
++ (instancetype)cyclePageView;
+
 @end
 
 // 制定协议
