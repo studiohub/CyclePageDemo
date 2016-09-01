@@ -109,6 +109,10 @@
 - (void)loadPageControl
 {
     self.pageControl.numberOfPages = _pictures.count;
+    if (_pictures.count <= 1)
+    {
+        self.pageControl.hidden = YES;
+    }
 }
 
 #pragma mark - tools
@@ -142,7 +146,10 @@
  */
 - (void)initTimer
 {
-    _timer = [NSTimer scheduledTimerWithTimeInterval:_stayTimeInterval target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
+    if (_pictures.count > 1)
+    {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:_stayTimeInterval target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
+    }
 }
 /**
  *  切换到下一个图片
