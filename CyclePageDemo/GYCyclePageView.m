@@ -143,9 +143,9 @@
  */
 - (NSUInteger)currentPageIndex
 {
-    CGFloat offsetX = _boxSV.contentOffset.x;
-    
-    return offsetX / _boxSV.frame.size.width;
+//    CGFloat offsetX = _boxSV.contentOffset.x;
+//    return offsetX / _boxSV.frame.size.width;
+    return _curIndex;
 }
 /**
  *  设定定时器，使图片在指定时间切换
