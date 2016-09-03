@@ -20,8 +20,10 @@
  * 2. UIImageView用户交互开关
  * 3. 图片的切换
  */
-@interface GYCyclePageView ()
+@interface GYCyclePageView () <UIScrollViewDelegate>
 
+/** scrollView盒子控件*/
+@property (nonatomic, strong) UIScrollView *boxSV;
 /** 保存UIImageView的数组*/
 @property (nonatomic, strong) NSMutableArray *imgViews;
 /** 当前页索引*/
@@ -75,11 +77,7 @@
 }
 - (void)dealloc
 {
-    if (_timer.valid)
-    {
-        [_timer invalidate];
-        _timer = nil;
-    }
+    [self stopTimer];
 }
 #pragma mark - 加载组件
 /**
@@ -154,9 +152,35 @@
 {
     if (_pictures.count > 1)
     {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:_stayTimeInterval target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
+        [self startTimer];
     }
 }
+
+/**
+ *  启动定时器
+ */
+- (void)startTimer
+{
+    if (!_timer.isValid)
+    {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:_stayTimeInterval target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
+        
+        [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+    }
+}
+
+/**
+ *  停止定时器
+ */
+- (void)stopTimer
+{
+    if (_timer.isValid)
+    {
+        [_timer invalidate];
+        _timer = nil;
+    }
+}
+
 /**
  *  切换到下一个图片
  */
@@ -215,6 +239,9 @@
         _boxSV.pagingEnabled = YES;
         _boxSV.showsVerticalScrollIndicator = NO;
         _boxSV.showsHorizontalScrollIndicator = NO;
+        
+        // 设置代理
+        _boxSV.delegate = self;
     }
     return _boxSV;
 }
@@ -250,5 +277,13 @@
     }
     return _imgViews;
 }
-
+#pragma mark - <UIScrollViewDelegate>
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self stopTimer];
+}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [self startTimer];
+}
 @end

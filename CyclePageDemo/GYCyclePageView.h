@@ -26,8 +26,6 @@
 /** 需要显示的图片数组*/
 @property (nonatomic, strong) NSArray *pictures;
 
-/** scrollView盒子控件*/
-@property (nonatomic, strong) UIScrollView *boxSV;
 /** pageControl*/
 @property (nonatomic, strong) UIPageControl *pageControl;
 
