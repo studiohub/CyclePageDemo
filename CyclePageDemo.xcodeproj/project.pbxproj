@@ -13,11 +13,6 @@
 		A936E7C41D78246D0022523E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A936E7C21D78246D0022523E /* Main.storyboard */; };
 		A936E7C61D78246E0022523E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A936E7C51D78246E0022523E /* Assets.xcassets */; };
 		A936E7C91D78246E0022523E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A936E7C71D78246E0022523E /* LaunchScreen.storyboard */; };
-		A936E7D61D7824940022523E /* img_00.png in Resources */ = {isa = PBXBuildFile; fileRef = A936E7D11D7824940022523E /* img_00.png */; };
-		A936E7D71D7824940022523E /* img_01.png in Resources */ = {isa = PBXBuildFile; fileRef = A936E7D21D7824940022523E /* img_01.png */; };
-		A936E7D81D7824940022523E /* img_02.png in Resources */ = {isa = PBXBuildFile; fileRef = A936E7D31D7824940022523E /* img_02.png */; };
-		A936E7D91D7824940022523E /* img_03.png in Resources */ = {isa = PBXBuildFile; fileRef = A936E7D41D7824940022523E /* img_03.png */; };
-		A936E7DA1D7824940022523E /* img_04.png in Resources */ = {isa = PBXBuildFile; fileRef = A936E7D51D7824940022523E /* img_04.png */; };
 		A936E7DD1D7824BD0022523E /* GYCyclePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A936E7DC1D7824BD0022523E /* GYCyclePageView.m */; };
 /* End PBXBuildFile section */
 
@@ -32,11 +27,6 @@
 		A936E7C51D78246E0022523E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A936E7C81D78246E0022523E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A936E7CA1D78246E0022523E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A936E7D11D7824940022523E /* img_00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_00.png; sourceTree = "<group>"; };
-		A936E7D21D7824940022523E /* img_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_01.png; sourceTree = "<group>"; };
-		A936E7D31D7824940022523E /* img_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_02.png; sourceTree = "<group>"; };
-		A936E7D41D7824940022523E /* img_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_03.png; sourceTree = "<group>"; };
-		A936E7D51D7824940022523E /* img_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_04.png; sourceTree = "<group>"; };
 		A936E7DB1D7824BD0022523E /* GYCyclePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYCyclePageView.h; sourceTree = "<group>"; };
 		A936E7DC1D7824BD0022523E /* GYCyclePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYCyclePageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,7 +63,6 @@
 			children = (
 				A936E7DB1D7824BD0022523E /* GYCyclePageView.h */,
 				A936E7DC1D7824BD0022523E /* GYCyclePageView.m */,
-				A936E7D01D7824790022523E /* Resource */,
 				A936E7BC1D78246D0022523E /* AppDelegate.h */,
 				A936E7BD1D78246D0022523E /* AppDelegate.m */,
 				A936E7BF1D78246D0022523E /* ViewController.h */,
@@ -93,18 +82,6 @@
 				A936E7BA1D78246D0022523E /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A936E7D01D7824790022523E /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				A936E7D11D7824940022523E /* img_00.png */,
-				A936E7D21D7824940022523E /* img_01.png */,
-				A936E7D31D7824940022523E /* img_02.png */,
-				A936E7D41D7824940022523E /* img_03.png */,
-				A936E7D51D7824940022523E /* img_04.png */,
-			);
-			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +115,7 @@
 				TargetAttributes = {
 					A936E7B51D78246D0022523E = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 65GEP5SQYY;
 					};
 				};
 			};
@@ -165,11 +143,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A936E7C91D78246E0022523E /* LaunchScreen.storyboard in Resources */,
-				A936E7D91D7824940022523E /* img_03.png in Resources */,
-				A936E7D71D7824940022523E /* img_01.png in Resources */,
-				A936E7D61D7824940022523E /* img_00.png in Resources */,
-				A936E7D81D7824940022523E /* img_02.png in Resources */,
-				A936E7DA1D7824940022523E /* img_04.png in Resources */,
 				A936E7C61D78246E0022523E /* Assets.xcassets in Resources */,
 				A936E7C41D78246D0022523E /* Main.storyboard in Resources */,
 			);
@@ -299,6 +272,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 65GEP5SQYY;
 				INFOPLIST_FILE = CyclePageDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.yeah.goyaya.CyclePageDemo;
@@ -310,6 +284,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 65GEP5SQYY;
 				INFOPLIST_FILE = CyclePageDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.yeah.goyaya.CyclePageDemo;
@@ -336,6 +311,7 @@
 				A936E7CF1D78246E0022523E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

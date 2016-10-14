@@ -32,8 +32,18 @@
 /** 控件代理对象,主要负责响应点击图片操作*/
 @property (nonatomic, weak) id<GYCyclePageViewDelegate> delegate;
 
-// 便捷方法
+/** 便捷方法*/
 + (instancetype)cyclePageView;
+
+/**
+ 开始循环播放图片
+ */
+- (void)startPlay;
+
+/**
+ 结束循环播放
+ */
+- (void)stopPlay;
 
 @end
 

@@ -20,6 +20,51 @@
  * 2. UIImageView用户交互开关
  * 3. 图片的切换
  */
+
+#pragma mark -
+#pragma mark - UIImageView
+@interface UIImageView (AsynSetImage)
+- (void)asynSetImage:(NSString *)imagePath;
+@end
+@implementation UIImageView (AsynSetImage)
+
+/**
+ 优化图片设置
+ */
+- (void)asynSetImage:(NSString *)imagePath
+{
+    if (imagePath == nil || imagePath.length == 0)
+    {
+        // 这里可以设置站位图片
+        return;
+    }
+    // 网络地址,或沙盒路径URL
+    if ([imagePath containsString:@"http"] || [imagePath containsString:@"file://"])
+    {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:imagePath]];
+            UIImage *image = [UIImage imageWithData:data];
+            if (image)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self setImage:image];
+                });
+            }
+        });
+        return;
+    }
+
+    UIImage *image = [UIImage imageNamed:imagePath];
+    if (image)
+    {
+        [self setImage:image];
+    }
+}
+
+@end
+
+#pragma mark -
+#pragma mark - GYCyclePageView
 @interface GYCyclePageView () <UIScrollViewDelegate>
 
 /** scrollView盒子控件*/
@@ -103,7 +148,7 @@
         [imgV addGestureRecognizer:rec];
         
         // 设置图片
-        imgV.image = [UIImage imageNamed:_pictures[i]];
+        [imgV asynSetImage:_pictures[i]];
     }
     
     // 设置scrollview的contentsize, 支持横向滑动
@@ -152,18 +197,18 @@
 {
     if (_pictures.count > 1)
     {
-        [self startTimer];
+        [self startTimerWithTimeInterval:self.stayTimeInterval];
     }
 }
 
 /**
  *  启动定时器
  */
-- (void)startTimer
+- (void)startTimerWithTimeInterval:(NSTimeInterval)timeInterval
 {
     if (!_timer.isValid)
     {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:_stayTimeInterval target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
         
         [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
     }
@@ -196,6 +241,33 @@
         _pageControl.currentPage = _curIndex;
     }];
 }
+
+/**
+ 手动拖拽，进行页面切换
+ */
+- (void)nextPageByhand
+{
+    int index = self.boxSV.contentOffset.x / self.boxSV.frame.size.width;
+    self.curIndex = index;
+    [UIView animateWithDuration:self.durTimeInterval animations:^{
+        [self.pageControl setCurrentPage:index];
+    }];
+}
+/**
+ 开始循环播放图片
+ */
+- (void)startPlay
+{
+    [self startTimerWithTimeInterval:self.stayTimeInterval];
+}
+
+/**
+ 结束循环播放
+ */
+- (void)stopPlay
+{
+    [self stopTimer];
+}
 #pragma mark - setter
 /**
  *  重写了pictures数组的set方法，根据图片数量，创建UIImageView，并加入到scrollView上
@@ -221,6 +293,13 @@
         // 启动定时器
         [self initTimer];
     }
+}
+
+- (void)setStayTimeInterval:(NSTimeInterval)stayTimeInterval
+{
+    _stayTimeInterval = stayTimeInterval;
+    [self stopTimer];
+    [self startTimerWithTimeInterval:stayTimeInterval];
 }
 #pragma mark - getter懒加载
 /**
@@ -282,8 +361,19 @@
 {
     [self stopTimer];
 }
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    [self startTimer];
+    [self nextPageByhand];
+    [self startTimerWithTimeInterval:self.stayTimeInterval];
+}
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    [self stopTimer];
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self nextPageByhand];
+    [self startTimerWithTimeInterval:self.stayTimeInterval];
 }
 @end

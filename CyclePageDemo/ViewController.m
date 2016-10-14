@@ -9,6 +9,11 @@
 #import "ViewController.h"
 #import "GYCyclePageView.h"
 
+#define SCREENWIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREENHEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define SCREENSCALEX (SCREENWIDTH / 320)
+#define SCREENSCALEY (SCREENHEIGHT / 568)
+
 @interface ViewController () <GYCyclePageViewDelegate>
 
 @end
@@ -20,10 +25,14 @@
     
 //    GYCyclePageView *cyclyPageView = [[GYCyclePageView alloc] initWithFrame:CGRectMake(10, 30, 300, 130)];
     GYCyclePageView *cyclyPageView = [GYCyclePageView cyclePageView];
-    cyclyPageView.frame = CGRectMake(10, 30, 300, 130);
+    cyclyPageView.frame = CGRectMake(10, 30, SCREENWIDTH - 20, 130 * SCREENSCALEY);
     [self.view addSubview:cyclyPageView];
     cyclyPageView.delegate = self;
-    cyclyPageView.pictures = @[ @"img_00", @"img_01", @"img_02", @"img_03", @"img_04", ];
+    cyclyPageView.pictures = @[ @"img_00", @"img_01", @"img_02",
+                                @"http://img05.tooopen.com/images/20140919/sy_71272488121.jpg", @"img_03", @"img_04", ];
+    // 建议动画持续时间小于每张图片的停留时间
+    cyclyPageView.durTimeInterval = 1.;
+    cyclyPageView.stayTimeInterval = 4.;
 }
 - (void)cyclePageView:(GYCyclePageView *)cyclePageView didTapedPage:(UIImageView *)imgView atIndex:(NSUInteger)index
 {
