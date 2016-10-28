@@ -24,6 +24,7 @@
     [super viewDidLoad];
     
 //    GYCyclePageView *cyclyPageView = [[GYCyclePageView alloc] initWithFrame:CGRectMake(10, 30, 300, 130)];
+    // 使用方法
     GYCyclePageView *cyclyPageView = [GYCyclePageView cyclePageView];
     cyclyPageView.frame = CGRectMake(10, 30, SCREENWIDTH - 20, 130 * SCREENSCALEY);
     [self.view addSubview:cyclyPageView];
